@@ -12,7 +12,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
-import QuizComponent from "../../components/QuizComponent";
+import QuizComponent from "@/components/QuizComponent";
 
 const Quiz = () => {
   const [isAlertVisible, setIsAlertVisible] = useState(false);

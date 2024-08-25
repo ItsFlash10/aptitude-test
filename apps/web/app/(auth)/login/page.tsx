@@ -1,11 +1,14 @@
 import React from "react";
-import { getServerSession } from "next-auth";
+import { Metadata } from "next";
+
 import { redirect } from "next/navigation";
 
-import SignIn from "../../components/SignIn";
-import { authOptions } from "../../lib/auth";
+import { getUserDetails } from "@/lib/utils";
+import SignIn from "@/components/SignIn";
 
-const getUserDetails = async () => await getServerSession(authOptions);
+export const metadata: Metadata = {
+  title: "Login",
+};
 
 const AuthPage = async () => {
   const session = await getUserDetails();

@@ -12,6 +12,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { createQueryString } from "@/lib/utils";
 
 const Instructions = () => {
   const router = useRouter();
@@ -46,7 +47,8 @@ const Instructions = () => {
         setIsInspectDetected(true);
       } else {
         // TODO: Check if already submitted the test
-        router.push("/test");
+        // TODO: changes id path param
+        router.push(`/test/${"12312412"}${createQueryString("", "")}`);
       }
     } else {
       toggleAlert();

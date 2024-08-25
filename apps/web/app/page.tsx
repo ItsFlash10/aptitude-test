@@ -1,22 +1,19 @@
 import { redirect } from "next/navigation";
-import { getServerSession } from "next-auth";
 
-import { authOptions } from "@/lib/auth";
 import Landing from "@/screens/Landing";
-
-const getUserDetails = async () => await getServerSession(authOptions);
+import { getUserDetails } from "@/lib/utils";
 
 const Home = async () => {
   const session = await getUserDetails();
 
   if (!session || !session?.user) {
-    redirect("/auth");
+    redirect("/login");
   }
 
   return (
-    <main>
+    <>
       <Landing />
-    </main>
+    </>
   );
 };
 

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import NextTopLoader from "nextjs-toploader";
+import Script from "next/script";
 
 import { cn } from "@/lib/utils";
 import { Providers, ThemeProvider } from "@/components/Providers";
@@ -20,13 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn(satoshi.variable, inter.variable)}>
+        {/* TODO: Check this is not working */}
+        <NextTopLoader color="#FF0000" height={4} />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <Providers>
-            <NextTopLoader color="#e2d2" height={2} />
-            {children}
-          </Providers>
+          <Providers>{children}</Providers>
         </ThemeProvider>
       </body>
+      <Script id="razorpay-checkout-js" src="https://checkout.razorpay.com/v1/checkout.js" />
     </html>
   );
 }

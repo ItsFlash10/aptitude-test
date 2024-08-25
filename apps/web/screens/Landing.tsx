@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import Footer from "@/components/Footer";
 
 import styles from "./Landing.module.css";
+import Payment from "@/components/Payment";
 
 const Landing = () => {
   const router = useRouter();
@@ -44,6 +45,7 @@ const Landing = () => {
       >
         Get Started
       </button>
+      <Payment />
       <Footer />
     </div>
   );
