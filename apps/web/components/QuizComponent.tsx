@@ -66,11 +66,11 @@ const QuizComponent = () => {
   return (
     <motion.div
       animate={{ opacity: 1, y: 0 }}
-      className="mx-auto mt-12 flex p-4 px-4"
+      className="mt-4 flex flex-col p-4 lg:mt-12 lg:flex-row"
       exit={{ opacity: 0, y: -20 }}
       initial={{ opacity: 0, y: 20 }}
     >
-      <div className="flex w-[60vw] flex-col">
+      <div className="flex flex-col lg:w-[60vw]">
         <QuestionSummary handleTimerComplete={handleTimerComplete} username={username ?? ""} />
         <Question />
         <QuestionActionButtons />

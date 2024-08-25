@@ -12,7 +12,7 @@ const QuestionsPalette = () => {
   };
 
   return (
-    <Card className="col mb-6 grid max-h-[80%] w-[25vw] grid-cols-5 gap-y-4 self-start overflow-auto rounded-sm p-4">
+    <Card className="col mb-6 mt-8 grid max-h-44 w-full grid-cols-6 gap-y-4 self-start overflow-auto rounded-sm p-4 sm:grid-cols-12 lg:mt-0 lg:max-h-[80vh] lg:w-[25vw] lg:grid-cols-5">
       {questions.map((question, index) => (
         <div
           key={question.id}

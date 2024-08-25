@@ -18,7 +18,7 @@ const Question = () => {
     );
   };
   return (
-    <Card className="mb-8 mr-8 h-[50vh] overflow-auto px-6 py-2 text-slate-100">
+    <Card className="mb-8 h-[50vh] overflow-auto px-6 py-2 text-slate-100 lg:mr-8">
       <motion.div
         key={currentQuestion?.id}
         initial={{ opacity: 0, y: 20 }}

@@ -91,8 +91,8 @@ const QuestionActionButtons = () => {
   };
 
   return (
-    <div className="mr-8 flex justify-between">
-      <div className="flex gap-2">
+    <div className="flex justify-between lg:mr-8">
+      <div className="flex flex-col gap-2 sm:flex-row">
         <Button
           className="border border-[#20e8a4] bg-transparent text-white"
           onClick={handleSaveAndNextClick}

@@ -39,8 +39,8 @@ const QuestionSummary = (props: IQuestionSummaryProps) => {
   const { handleTimerComplete, username } = props;
 
   return (
-    <Card className="mb-3 mr-8 flex justify-between border-none bg-gradient-to-r from-[#020f31] to-[#121d39] p-4">
-      <div className="col grid w-[70%] grid-cols-3 gap-y-2">
+    <Card className="mb-3 flex justify-between border-none bg-gradient-to-r from-[#020f31] to-[#121d39] p-4 lg:mr-8">
+      <div className="col grid w-[70%] grid-cols-1 gap-y-2 sm:grid-cols-2 md:grid-cols-3">
         <StatusBox questionStatus={QuestionStatus.Default} />
         <StatusBox questionStatus={QuestionStatus.Visited} />
         <StatusBox questionStatus={QuestionStatus.Answered} />
