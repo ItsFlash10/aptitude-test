@@ -9,7 +9,7 @@ import db from "@repo/db/client";
 const Home = async () => {
   const session = await getUserDetails();
   const user = await db.user.findFirst({
-    where: { email: session.user.email },
+    where: { email: session?.user?.email },
   });
 
   return (
