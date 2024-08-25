@@ -5,6 +5,7 @@ import { toast } from "sonner";
 
 import { QuestionStatus, QuizQuestion } from "@repo/common/config";
 import { currentQuestionId as recoilCurrentQuestionId, questionsData } from "@repo/store";
+import { Button } from "./ui/button";
 
 const QuestionActionButtons = () => {
   const router = useRouter();
@@ -90,38 +91,42 @@ const QuestionActionButtons = () => {
   };
 
   return (
-    <div className="ml-10">
-      <div className="mt-6 flex gap-2">
-        <button
-          className="rounded-lg bg-green-500 px-4 py-2 text-white"
+    <div className="mr-8 flex justify-between">
+      <div className="flex gap-2">
+        <Button
+          className="border border-[#20e8a4] bg-transparent text-white"
           onClick={handleSaveAndNextClick}
         >
           Save & Next
-        </button>
-        <button className="rounded-lg bg-slate-800 px-4 py-2" onClick={handlePrevClick}>
-          Previous
-        </button>
-        <button className="rounded-lg bg-slate-800 px-4 py-2" onClick={handleClearClick}>
+        </Button>
+        <Button
+          className="border border-slate-700 bg-transparent text-white"
+          onClick={handlePrevClick}
+        >
+          {`<`}
+        </Button>
+        <Button
+          className="border border-slate-700 bg-transparent text-white"
+          onClick={handleClearClick}
+        >
           Clear
-        </button>
-        <button className="rounded-lg bg-slate-800 px-4 py-2" onClick={handleNextClick}>
-          Next
-        </button>
-        <button
-          className="rounded-lg bg-purple-500 px-4 py-2 text-white"
+        </Button>
+        <Button
+          className="border border-slate-700 bg-transparent text-white"
+          onClick={handleNextClick}
+        >
+          {`>`}
+        </Button>
+        <Button
+          className="border border-[#9f3db4] bg-transparent text-white"
           onClick={handleMarkForReview}
         >
           Mark for Review
-        </button>
+        </Button>
       </div>
-      <div className="mt-4">
-        <button
-          className="rounded-lg bg-green-500 px-8 py-2 text-white"
-          onClick={handleSubmitClick}
-        >
-          Submit
-        </button>
-      </div>
+      <Button className="bg-[#20e8a4] text-green-950" onClick={handleSubmitClick}>
+        Submit
+      </Button>
     </div>
   );
 };

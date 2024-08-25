@@ -40,9 +40,8 @@ const Timer: React.FC<TimerProps> = (props) => {
   };
 
   return (
-    <div className="flex items-center gap-4 p-4">
-      <h1 className="text-xl">Time Remaining:</h1>
-      <h1 className="text-2xl">{formatTime(timeRemaining)}</h1>
+    <div className="flex items-center gap-4">
+      <p className="text-md font-bold text-slate-200">{formatTime(timeRemaining)}</p>
     </div>
   );
 };

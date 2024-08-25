@@ -4,6 +4,8 @@ import React from "react";
 import Image from "next/image";
 import { signIn } from "next-auth/react";
 
+import Footer from "./Footer";
+
 import styles from "./SignIn.module.css";
 
 const SignIn = () => {
@@ -50,6 +52,7 @@ const SignIn = () => {
           Continue with Github
         </button>
       </div>
+      <Footer />
     </div>
   );
 };

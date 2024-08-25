@@ -2,6 +2,7 @@ import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { currentQuestionId as recoilCurrentQuestionId, questionsData } from "@repo/store";
 import { getQuestionColorAndText } from "../app/utils";
+import { Card } from "./ui/card";
 
 const QuestionsPalette = () => {
   const questions = useRecoilValue(questionsData);
@@ -11,7 +12,7 @@ const QuestionsPalette = () => {
   };
 
   return (
-    <div className="col s mb-6 grid grid-cols-6 gap-y-4 overflow-auto rounded-sm p-4 shadow-md shadow-[#00000066]">
+    <Card className="col mb-6 grid max-h-[80%] w-[25vw] grid-cols-5 gap-y-4 self-start overflow-auto rounded-sm p-4">
       {questions.map((question, index) => (
         <div
           key={question.id}
@@ -21,7 +22,7 @@ const QuestionsPalette = () => {
           {index + 1}
         </div>
       ))}
-    </div>
+    </Card>
   );
 };
 

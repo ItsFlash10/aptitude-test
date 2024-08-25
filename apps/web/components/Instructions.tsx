@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/alert-dialog";
 import { createQueryString } from "@/lib/utils";
 
+import { Button } from "./ui/button";
+
 const Instructions = () => {
   const router = useRouter();
   const [isTermsChecked, setIsTermsChecked] = useState(false);
@@ -154,14 +156,14 @@ const Instructions = () => {
             action, which may include ban from future Tests / Examinations.
           </label>
         </div>
+
         <div className="my-8 flex w-full justify-center">
-          <button
-            className="rounded bg-blue-400 p-2 hover:bg-blue-500"
+          <Button
+            className="bg-[#1b4bc4] text-white hover:bg-[#1b4bc47b]"
             onClick={handleStartClick}
-            type="button"
           >
             Start Test
-          </button>
+          </Button>
         </div>
       </div>
       <AlertDialog open={isAlertVisible}>

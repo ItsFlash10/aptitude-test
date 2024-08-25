@@ -25,7 +25,6 @@ export async function GET() {
   };
   try {
     const order = await instance.orders.create(options);
-    console.log({ order });
 
     return NextResponse.json({ msg: "success", order });
   } catch (err) {

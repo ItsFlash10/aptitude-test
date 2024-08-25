@@ -12,9 +12,7 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <SessionProvider>
       <RecoilRoot>
-        <div className="flex min-h-screen flex-col">
-          <div className="mx-auto">{children}</div>
-        </div>
+        <div className="relative flex min-h-screen flex-col">{children}</div>
       </RecoilRoot>
       <Toaster />
     </SessionProvider>

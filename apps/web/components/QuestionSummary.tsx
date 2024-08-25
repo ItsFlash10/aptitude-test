@@ -4,6 +4,13 @@ import { useRecoilValue } from "recoil";
 import { questionsData } from "@repo/store";
 
 import { getQuestionColorAndText } from "../app/utils";
+import Timer from "./Timer";
+import { Card } from "./ui/card";
+
+interface IQuestionSummaryProps {
+  handleTimerComplete: () => void;
+  username: string;
+}
 
 const getCount = (questions: QuizQuestion[], status: QuestionStatus) =>
   questions?.reduce((acc, question) => {
@@ -14,29 +21,37 @@ const getCount = (questions: QuizQuestion[], status: QuestionStatus) =>
 const StatusBox = ({ questionStatus }: { questionStatus: QuestionStatus }) => {
   const quizQuestions = useRecoilValue(questionsData);
   const count = getCount(quizQuestions, questionStatus);
-  const { color, label } = getQuestionColorAndText(questionStatus);
+  const { label, summaryColor } = getQuestionColorAndText(questionStatus);
 
   return (
     <div className="flex items-center gap-2">
       <div
-        className={`mx-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg font-bold text-white ${color}`}
+        className={`mx-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border font-medium text-white ${summaryColor}`}
       >
         {count}
       </div>
-      {label}
+      <p className="text-sm">{label}</p>
     </div>
   );
 };
 
-const QuestionSummary = () => {
+const QuestionSummary = (props: IQuestionSummaryProps) => {
+  const { handleTimerComplete, username } = props;
+
   return (
-    <div className="col grid grid-cols-2 gap-y-2 p-4">
-      <StatusBox questionStatus={QuestionStatus.Default} />
-      <StatusBox questionStatus={QuestionStatus.Visited} />
-      <StatusBox questionStatus={QuestionStatus.Answered} />
-      <StatusBox questionStatus={QuestionStatus.ReviewWithAnswer} />
-      <StatusBox questionStatus={QuestionStatus.ReviewWithoutAnswer} />
-    </div>
+    <Card className="mb-3 mr-8 flex justify-between border-none bg-gradient-to-r from-[#020f31] to-[#121d39] p-4">
+      <div className="col grid w-[70%] grid-cols-3 gap-y-2">
+        <StatusBox questionStatus={QuestionStatus.Default} />
+        <StatusBox questionStatus={QuestionStatus.Visited} />
+        <StatusBox questionStatus={QuestionStatus.Answered} />
+        <StatusBox questionStatus={QuestionStatus.ReviewWithAnswer} />
+        <StatusBox questionStatus={QuestionStatus.ReviewWithoutAnswer} />
+      </div>
+      <div className="flex min-w-20 flex-col items-end justify-center">
+        <div>{username}</div>
+        <Timer onComplete={handleTimerComplete} duration={60 * 60 * 2} />
+      </div>
+    </Card>
   );
 };
 

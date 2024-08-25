@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useRecoilState } from "recoil";
 import { currentQuestionId as recoilCurrentQuestionId, questionsData } from "@repo/store";
 import { QuestionStatus, QuizQuestion } from "@repo/common/config";
+import { useSession } from "next-auth/react";
 import { motion } from "framer-motion";
 
 import {
@@ -17,14 +18,16 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
-import QuestionSummary from "./QuestionSummary";
-import Timer from "./Timer";
-import QuestionsPalette from "./QuestionsPalette";
 import Question from "./Question";
 import QuestionActionButtons from "./QuestionActionButtons";
+import QuestionsPalette from "./QuestionsPalette";
+import QuestionSummary from "./QuestionSummary";
 
 const QuizComponent = () => {
   const router = useRouter();
+  const session = useSession();
+
+  const { name: username } = session.data?.user || {};
 
   const [questions, setQuestions] = useRecoilState<QuizQuestion[]>(questionsData);
   const [currentQuestionId, setCurrentQuestionId] = useRecoilState(recoilCurrentQuestionId);
@@ -47,7 +50,7 @@ const QuizComponent = () => {
           if (q.id === previousQuestionId) {
             return q.selectedOptionId || q.status === QuestionStatus.ReviewWithoutAnswer
               ? q
-              : { ...q, status: "visited" };
+              : { ...q, status: QuestionStatus.Visited };
           }
           return q;
         }),
@@ -63,21 +66,16 @@ const QuizComponent = () => {
   return (
     <motion.div
       animate={{ opacity: 1, y: 0 }}
-      className="mx-auto mt-12 px-4"
+      className="mx-auto mt-12 flex p-4 px-4"
       exit={{ opacity: 0, y: -20 }}
       initial={{ opacity: 0, y: 20 }}
     >
-      <div className="flex p-4">
-        <div className="w-[60vw] p-4">
-          <Question />
-          <QuestionActionButtons />
-        </div>
-        <div className="w-[30vw]">
-          <Timer onComplete={handleTimerComplete} duration={60 * 60 * 2} />
-          <QuestionSummary />
-          <QuestionsPalette />
-        </div>
+      <div className="flex w-[60vw] flex-col">
+        <QuestionSummary handleTimerComplete={handleTimerComplete} username={username ?? ""} />
+        <Question />
+        <QuestionActionButtons />
       </div>
+      <QuestionsPalette />
       <AlertDialog open={isAlertVisible}>
         <AlertDialogContent>
           <AlertDialogHeader>
