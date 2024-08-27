@@ -9,6 +9,12 @@ body {
   overflow-x: hidden;
 }
 
+/* Add this in your global.css or similar */
+.nprogress-bar {
+  background: #ff0000 !important;
+  height: 4px !important;
+}
+
 *,
 *::before,
 *::after {
@@ -124,7 +130,7 @@ body {
   list-style-type: lower-roman;
 }
 
-/* Add this CSS if needed */
+/* Add this CSS if needed else remove it */
 iframe.razorpay-checkout-frame {
   background: transparent !important;
 }

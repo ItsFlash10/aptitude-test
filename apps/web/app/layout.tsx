@@ -19,11 +19,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={cn(satoshi.variable, inter.variable)}>
-        {/* TODO: Check this is not working */}
-        <NextTopLoader color="#FF0000" height={4} />
+    <html className={cn(satoshi.variable, inter.variable)} lang="en" suppressHydrationWarning>
+      <body>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          {/* TODO: Check this is not working */}
+          <NextTopLoader color="#FF0000" height={4} />
           <Providers>{children}</Providers>
         </ThemeProvider>
       </body>

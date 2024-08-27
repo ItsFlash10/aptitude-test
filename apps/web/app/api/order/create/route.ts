@@ -1,10 +1,6 @@
 import { NextResponse } from "next/server";
-import Razorpay from "razorpay";
 
-const instance = new Razorpay({
-  key_id: process.env.NEXT_PUBLIC_RAZORPAY_ID || "",
-  key_secret: process.env.NEXT_PUBLIC_RAZORPAY_SECRET,
-});
+import { razorpayInstance } from "@/lib/payment";
 
 export async function GET() {
   const payment_capture = 1;
@@ -24,8 +20,7 @@ export async function GET() {
     },
   };
   try {
-    const order = await instance.orders.create(options);
-
+    const order = await razorpayInstance.orders.create(options);
     return NextResponse.json({ msg: "success", order });
   } catch (err) {
     console.log({ err });
@@ -34,6 +29,5 @@ export async function GET() {
 
 export async function POST(req: Request) {
   const body = await req.json();
-
   return NextResponse.json({ msg: body });
 }

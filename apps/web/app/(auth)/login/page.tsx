@@ -3,7 +3,7 @@ import { Metadata } from "next";
 
 import { redirect } from "next/navigation";
 
-import { getUserDetails } from "@/lib/utils";
+import { getSession } from "@/lib/auth/session";
 import SignIn from "@/components/SignIn";
 
 export const metadata: Metadata = {
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 const AuthPage = async () => {
-  const session = await getUserDetails();
+  const session = await getSession();
 
   if (session) {
     redirect("/");

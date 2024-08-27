@@ -1,13 +1,11 @@
-import { redirect } from "next/navigation";
-
-import Landing from "@/screens/Landing";
-import { getUserDetails } from "@/lib/utils";
 import { AppBar } from "@/components/AppBar";
 
 import db from "@repo/db/client";
+import Landing from "@/components/Landing";
+import { getSession } from "@/lib/auth/session";
 
 const Home = async () => {
-  const session = await getUserDetails();
+  const session = await getSession();
   const user = await db.user.findFirst({
     where: { email: session?.user?.email },
   });

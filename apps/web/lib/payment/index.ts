@@ -1,5 +1,11 @@
+import Razorpay from "razorpay";
 import { SessionContextValue } from "next-auth/react";
 import { toast } from "sonner";
+
+export const razorpayInstance = new Razorpay({
+  key_id: process.env.NEXT_PUBLIC_RAZORPAY_ID || "",
+  key_secret: process.env.NEXT_PUBLIC_RAZORPAY_SECRET,
+});
 
 export const createOrderId = async (amount: number) => {
   try {

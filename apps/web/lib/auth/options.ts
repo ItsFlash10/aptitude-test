@@ -1,7 +1,7 @@
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import db from "@repo/db/client";
-import { createUser } from "../utils";
+import { createUser } from "../../utils";
 
 export const authOptions = {
   // adapter: PrismaAdapter(db) as Adapter,

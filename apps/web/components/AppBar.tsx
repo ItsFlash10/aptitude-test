@@ -35,7 +35,7 @@ export const AppBar = () => {
         />
       )}
       {/* MaxWidthWrapper */}
-      <div className="relative mx-auto w-full max-w-screen-xl px-2.5 lg:px-10">
+      <div className="relative mx-auto w-full max-w-screen-xl px-6 lg:px-10">
         <div className="flex items-center justify-between py-6">
           <Link href={"/"} className="cursor-pointer">
             <span className="hidden text-lg font-bold tracking-tight text-foreground md:block md:text-xl">

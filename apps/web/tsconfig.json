@@ -12,7 +12,6 @@
       "@/hooks/*": ["hooks/*"],
       "@/lib/*": ["lib/*"],
       "@/pages/*": ["pages/*"],
-      "@/screens/*": ["screens/*"],
       "@/styles/*": ["styles/*"],
       "@/ui/*": ["ui/*"]
     }
