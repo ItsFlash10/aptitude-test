@@ -135,6 +135,10 @@ iframe.razorpay-checkout-frame {
   background: transparent !important;
 }
 
+/* required as there was a white background by default */
 .razorpay-container {
-  background: transparent !important;
+  height: 70% !important;
+  max-width: 380px;
+  inset: 0;
+  margin: auto;
 }
