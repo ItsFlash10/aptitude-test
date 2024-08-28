@@ -87,7 +87,7 @@ const QuestionActionButtons = () => {
   };
 
   const handleSubmitClick = () => {
-    router.replace("/submit-confirmation");
+    router.replace("/submit");
   };
 
   return (

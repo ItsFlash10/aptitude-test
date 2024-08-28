@@ -39,11 +39,28 @@ const Landing = (props: ILandingProps) => {
   const handlePaymentSuccess = () => router.push("/instructions");
 
   const handleClick = () => {
-    // isSubscribed
-    //   ? router.push("/instructions")
-    //   : processPayment({ amount: 1000, session, successCallback: handlePaymentSuccess });
-    router.push("/dashboard");
+    isSubscribed
+      ? router.push("/instructions")
+      : processPayment({ amount: 1000, session, successCallback: handlePaymentSuccess });
+    // router.push("/dashboard");
   };
+
+  const renderCards = () =>
+    [{}, {}].map((_, index) => (
+      <motion.div
+        key={index}
+        custom={index}
+        initial={{ opacity: 0, y: 0 }}
+        animate={controls}
+        whileHover={{ y: -4, transition: { duration: 0.2 } }}
+      >
+        <Card>
+          <CardHeader>This is the header</CardHeader>
+          <CardContent>Test Info</CardContent>
+          <CardFooter>This is the footer</CardFooter>
+        </Card>
+      </motion.div>
+    ));
 
   return (
     <div
@@ -58,38 +75,11 @@ const Landing = (props: ILandingProps) => {
           <Button onClick={handleClick}>Unleash your potential</Button>
         </>
       ) : (
-        <div className="text-base">Please login to continue</div>
+        <h1 className="bg-gradient-to-r from-[#3b4075] to-[#54537a] bg-clip-text text-2xl text-transparent">
+          LOGIN TO UNLEASH YOUR POTENTIAL
+        </h1>
       )}
-      {/* <main>
-        <div
-          className="senja-embed"
-          data-id="4ac65b64-922c-4daf-af40-5cf71ade893f"
-          data-lazyload="false"
-          data-mode="shadow"
-        ></div>
-        <Script
-          async
-          type="text/javascript"
-          src="https://static.senja.io/dist/platform.js"
-        ></Script>
-      </main> */}
-      <div className="mt-8 flex gap-4">
-        {[{}, {}].map((_, index) => (
-          <motion.div
-            key={index}
-            custom={index}
-            initial={{ opacity: 0, y: 0 }}
-            animate={controls}
-            whileHover={{ y: -4, transition: { duration: 0.2 } }}
-          >
-            <Card>
-              <CardHeader>This is the header</CardHeader>
-              <CardContent>Test Info</CardContent>
-              <CardFooter>This is the footer</CardFooter>
-            </Card>
-          </motion.div>
-        ))}
-      </div>
+
       <Footer />
     </div>
   );
