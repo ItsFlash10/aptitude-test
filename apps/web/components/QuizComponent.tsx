@@ -1,12 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useRecoilState } from "recoil";
 import { currentQuestionId as recoilCurrentQuestionId, questionsData } from "@repo/store";
 import { QuestionStatus, QuizQuestion } from "@repo/common/config";
 import { useSession } from "next-auth/react";
 import { motion } from "framer-motion";
+import Webcam from "react-webcam";
+import moment from "moment";
 
 import {
   AlertDialog,
@@ -22,18 +24,35 @@ import Question from "./Question";
 import QuestionActionButtons from "./QuestionActionButtons";
 import QuestionsPalette from "./QuestionsPalette";
 import QuestionSummary from "./QuestionSummary";
+import { Card } from "./ui/card";
+
+const Info = ({ title, subtitle }: { title: string; subtitle: string }) => (
+  <div className="flex">
+    <p className="w-16">{`${title}:`}</p>
+    <p>{subtitle}</p>
+  </div>
+);
 
 const QuizComponent = () => {
   const router = useRouter();
   const session = useSession();
+  const { testId: examId } = useParams() || {};
 
-  const { name: username } = session.data?.user || {};
+  if (!examId) {
+    router.push("/instructions");
+  }
 
   const [questions, setQuestions] = useRecoilState<QuizQuestion[]>(questionsData);
   const [currentQuestionId, setCurrentQuestionId] = useRecoilState(recoilCurrentQuestionId);
   const [previousQuestionId, setPreviousQuestionId] = useState<number | null>(null);
   const [isAlertVisible, setIsAlertVisible] = useState(false);
 
+  const { name: username } = session.data?.user || {};
+  const videoConstraints = {
+    width: 96,
+    height: 96,
+    facingMode: "user",
+  };
   const handleTimerComplete = () => {
     setIsAlertVisible(true);
   };
@@ -71,11 +90,25 @@ const QuizComponent = () => {
       initial={{ opacity: 0, y: 20 }}
     >
       <div className="flex flex-col lg:w-[60vw]">
-        <QuestionSummary handleTimerComplete={handleTimerComplete} username={username ?? ""} />
+        <QuestionSummary handleTimerComplete={handleTimerComplete} />
         <Question />
         <QuestionActionButtons />
       </div>
-      <QuestionsPalette />
+      <div>
+        <Card className="mb-3 flex gap-4 p-2">
+          <Webcam
+            audio={false}
+            className="h-24 overflow-hidden rounded-lg"
+            videoConstraints={videoConstraints}
+          />
+          <div className="flex flex-col justify-between py-2 text-sm">
+            <Info title="Name" subtitle={username ?? ""} />
+            <Info title="Exam Id" subtitle={(examId as string) || ""} />
+            <Info title="Date" subtitle={moment().format("DD/MM/YYYY")} />
+          </div>
+        </Card>
+        <QuestionsPalette />
+      </div>
       <AlertDialog open={isAlertVisible}>
         <AlertDialogContent>
           <AlertDialogHeader>

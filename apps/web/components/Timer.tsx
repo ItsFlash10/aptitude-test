@@ -41,7 +41,7 @@ const Timer: React.FC<TimerProps> = (props) => {
 
   return (
     <div className="flex items-center gap-4">
-      <p className="text-md font-bold text-slate-200">{formatTime(timeRemaining)}</p>
+      <p className="text-lg font-bold text-slate-200">{formatTime(timeRemaining)}</p>
     </div>
   );
 };

@@ -9,7 +9,6 @@ import { Card } from "./ui/card";
 
 interface IQuestionSummaryProps {
   handleTimerComplete: () => void;
-  username: string;
 }
 
 const getCount = (questions: QuizQuestion[], status: QuestionStatus) =>
@@ -36,7 +35,7 @@ const StatusBox = ({ questionStatus }: { questionStatus: QuestionStatus }) => {
 };
 
 const QuestionSummary = (props: IQuestionSummaryProps) => {
-  const { handleTimerComplete, username } = props;
+  const { handleTimerComplete } = props;
 
   return (
     <Card className="mb-3 flex justify-between border-none bg-gradient-to-r from-[#020f31] to-[#121d39] p-4 lg:mr-8">
@@ -48,7 +47,6 @@ const QuestionSummary = (props: IQuestionSummaryProps) => {
         <StatusBox questionStatus={QuestionStatus.ReviewWithoutAnswer} />
       </div>
       <div className="flex min-w-20 flex-col items-end justify-center">
-        <div>{username}</div>
         <Timer onComplete={handleTimerComplete} duration={60 * 60 * 2} />
       </div>
     </Card>

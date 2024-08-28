@@ -50,7 +50,7 @@ const Instructions = () => {
       } else {
         // TODO: Check if already submitted the test
         // TODO: changes id path param
-        router.push(`/test/${"12312412"}${createQueryString("", "")}`);
+        router.push(`/test/${"3374014014"}`);
       }
     } else {
       toggleAlert();

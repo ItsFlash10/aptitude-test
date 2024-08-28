@@ -17,6 +17,7 @@ const Question = () => {
       prevQuestions.map((q) => (q.id === questionId ? { ...q, selectedOptionId: optionId } : q)),
     );
   };
+
   return (
     <Card className="mb-8 h-[50vh] overflow-auto px-6 py-2 text-slate-100 lg:mr-8">
       <motion.div
@@ -36,17 +37,17 @@ const Question = () => {
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: index * 0.05 }}
-              className="flex cursor-pointer items-center space-x-2 self-start"
+              className="flex items-center space-x-2"
             >
               <input
                 checked={currentQuestion.selectedOptionId === option.id}
-                className="form-radio text-blue-500"
+                className="text-bg-[red] h-5 w-5 accent-slate-100"
                 name={`question-${currentQuestion.id}`}
                 onChange={() => handleOptionSelect(currentQuestion.id, option.id)}
                 type="radio"
                 value={option.id}
               />
-              <span>{option.text}</span>
+              <span className="text-lg">{option.text}</span>
             </motion.label>
           ))}
         </AnimatePresence>
