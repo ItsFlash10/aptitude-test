@@ -75,9 +75,15 @@ const Landing = (props: ILandingProps) => {
           <Button onClick={handleClick}>Unleash your potential</Button>
         </>
       ) : (
-        <h1 className="bg-gradient-to-r from-[#3b4075] to-[#54537a] bg-clip-text text-2xl text-transparent">
-          LOGIN TO UNLEASH YOUR POTENTIAL
-        </h1>
+        <>
+          <h1 className="bg-gradient-to-r from-[#3b4075] to-[#54537a] bg-clip-text text-2xl text-transparent">
+            LOGIN TO UNLEASH YOUR POTENTIAL
+          </h1>
+          <p className="my-4 text-xs text-slate-300">OR</p>
+          <Button variant="outline" onClick={handleClick} className="text-slate-400">
+            Continue as a Guest
+          </Button>
+        </>
       )}
 
       <Footer />
